@@ -1,1 +1,2 @@
-# web3dscan
+- Prototypen des Screen-Designs der Gesamtanwendung
+- Autor: Dennis Klein 

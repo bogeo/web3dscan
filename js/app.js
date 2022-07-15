@@ -68,9 +68,9 @@ function initMapControls() {
   };
 
   var overlays = {
+    "Geologische Karte": wms_geologie,
     "Landesgrenze Hessen": hessen_umring_wms,
-    "Regierungsbezirke Hessen": hessen_rbz_wms,
-    "Geologische Karte": wms_geologie
+    "Regierungsbezirke Hessen": hessen_rbz_wms
   };
 
   layerControl = L.control.layers(baseLayers, overlays).addTo(map);

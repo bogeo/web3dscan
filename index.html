@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="css/app.css">
   <link rel="stylesheet" href="css/grid.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/steckbrief.css">
     
 </head>
 
@@ -88,18 +89,15 @@
 	
 
   <div class="box box--3 box--side">
-    
     <button onclick="setMain(this)">
-    set main
+      set main
     </button>
-	
-	
-	<div>
-    Steckbrief
-	</div>
+    <div id="steckbrief">
+      Steckbrief
     </div>
-        </div>
-    </div>
+  </div>
+  </div>
+  </div>
 
   <!-- script files of dependencies and own script file -->
   <!-- Make sure you put this AFTER Leaflet's CSS -->
@@ -110,6 +108,7 @@
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <script src="js/app.js" type="text/javascript"></script>
   <script src="js/script.js"></script>
+  <script src="js/steckbrief.js" type="text/javascript"></script>
     
 </body>
 

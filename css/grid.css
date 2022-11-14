@@ -1,7 +1,8 @@
 .boxes {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  height: 100%;
+  grid-template-rows: 50% 50%;
+  height: 100vh;
   gap: 10px;
 }
 
@@ -23,6 +24,10 @@
   grid-column: 3 / 4;
  
  border-top:20px solid #8DBF19;
+}
+
+.box--3 {
+  overflow-y: scroll;
 }
 
 .mobile-only {

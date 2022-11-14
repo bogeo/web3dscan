@@ -1,0 +1,42 @@
+#steckbrief profile {
+    display: grid;
+    padding: 1em;
+}
+
+#steckbrief profile > * {
+    display: grid;
+    grid-template-columns: auto 50%;
+    gap: 10px;
+}
+
+#steckbrief type {
+    display: block;
+    font-size: larger;
+    padding-bottom: 1em;
+    font-weight: bold;
+    text-align: center;
+}
+
+#steckbrief attribute {
+    font-weight: bold;
+    padding: 0.3em;
+    background-color:rgb(197, 240, 140);
+}
+#steckbrief value {
+    padding: 0.3em;
+    background-color:rgb(249, 255, 239);
+}
+
+#steckbrief shortDescription {
+    display: block;
+    padding-top: 1em;
+}
+
+#steckbrief shortDescription attribute {
+    display: block;
+    text-align: center;
+}
+
+#steckbrief shortDescription value {
+    display: block;
+}

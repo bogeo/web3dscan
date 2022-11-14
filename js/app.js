@@ -161,8 +161,31 @@ function fetchHandstuecke() {
         // },
         onEachFeature: onEachFeature_asTable
       }).addTo(map);
-      layerControl.addOverlay(handstuecke_geoJSON, "Handst&uuml;cke");
+      layerControl.addOverlay(handstuecke_geoJSON.on("click", markerOnClick), "Handst&uuml;cke");
     });
+}
+
+async function  markerOnClick(layer) {
+
+  // Id of the object that was clicked, the one responding to the small red circle on the map that 
+  // we have clicked on
+  var objectName = layer["layer"]["feature"]["id"];
+
+  // Changing the model-viewers 3d file source with the model named like the id of the red circle.
+  // Models correspond to a red circle by its id and their name.
+  var modelViewer = document.getElementById("hotspot-camera")
+  modelViewer.style.visibility= "visible";
+  modelViewer.src="./models/Astronaut.glb";
+  modelViewer.onerror = function(){
+    modelViewer.style.visibility= "hidden";
+    document.getElementById("hotspot-camera").src="";
+  };
+
+  // Loading the Steckbrief with the right file name (identical to the 3d model loading on click).
+  loadSteckbrief(objectName);
+
+
+  console.log("Clicked on object: "+objectName);
 }
 
 function initModelViewer() {
@@ -263,6 +286,8 @@ function onDomLoaded(event) {
   fetchHandstuecke();
 
   initModelViewer();
+  
+  onMapClick();
 
 }
 

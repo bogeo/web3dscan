@@ -1,9 +1,10 @@
 function main() {
     initMap();
     initMapControls();
-    onMapClick();
     fetchHandstuecke();
     initModelViewer();
-    onMapClick();
     fetchProfile();
 }
+
+//call the main function
+main();

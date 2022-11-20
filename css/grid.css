@@ -6,24 +6,19 @@
   gap: 10px;
 }
 
- 
-
-
- 
-
 .box--main {
   order: 0;
   grid-column: 1 / 3;
   grid-row: span 2;
-  
-      border-top:20px solid #8DBF19;
+
+  border-top: 20px solid #8DBF19;
 }
 
 .box--side {
   order: 1;
   grid-column: 3 / 4;
- 
- border-top:20px solid #8DBF19;
+
+  border-top: 20px solid #8DBF19;
 }
 
 .box--3 {
@@ -34,6 +29,6 @@
   position: fixed;
   left: 45vW;
   top: 15vH;
-  display: none;#
-      border-top:20px solid #8DBF19;
+  display: none;
+  border-top: 20px solid #8DBF19;
 }

@@ -1,46 +1,32 @@
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
 }
 
- 
-
- 
-
- 
-
 .mobile-only {
   position: fixed;
-  left: 45vW;
-  top: 15vH;
-  display: none;#
-      border-top:20px solid #8DBF19;
+  left: 45vw;
+  top: 15vh;
+  display: none;
+  border-top: 20px solid #8dbf19;
 }
 
-
-
-
-
- 
-
- 
-
-.topbar{
-	background-color: #8DBF19;
-	margin-bottom:5px;
-}
-#steckbrief{
-
-   background:url("/img/steckbrief.jpg");
-   background-size: contain;
+.topbar {
+  background-color: #8dbf19;
+  margin-bottom: 5px;
 }
 
-.image{
-	height:100%;
+#steckbrief {
+  /*  background:url("/img/steckbrief.jpg"); */
+  background-size: contain;
+}
+
+.image {
+  height: 100%;
   object-fit: cover;
-   display:block;
+  display: block;
 }
-
 
 .sidebar {
   height: 100%;
@@ -80,78 +66,57 @@ html, body {
 .openbtn {
   font-size: 20px;
   cursor: pointer;
-  background-color: #8DBF19;
+  background-color: #8dbf19;
   color: white;
   padding: 10px 15px;
   border: none;
 }
 
 .openbtn:hover {
- background-color: #8DBF19;
- }
- 
- .navbar img {
+  background-color: #8dbf19;
+}
+
+.navbar img {
   max-height: 30px;
 }
 
-.searchfield{
-	
-	padding-left: 10px;
- 
-	margin-left: 10px;
-	margin-top: 5px;
+.searchfield {
+  padding-left: 10px;
+
+  margin-left: 10px;
+  margin-top: 5px;
 }
 
+.dropdown {
+  padding-left: 10px;
 
-.dropdown{
-	
-	padding-left: 10px;
- 
-	margin-left: 10px;
-	margin-top: 5px;
+  margin-left: 10px;
+  margin-top: 5px;
 }
 
+.searchlabel {
+  padding-left: 10px;
 
-.searchlabel{
-	
-	padding-left: 10px;
- 
-	margin-left: 10px;
-	padding-top: 5px;
+  margin-left: 10px;
+  padding-top: 5px;
 }
 
-
- 
- 
-
-
-
-model-viewer{
-
- overflow-x:hidden;
- overflow-y:hidden;
- height:95%;
- width:100%;
+model-viewer {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  height: 95%;
+  width: 100%;
 }
 
-
-
-
-
-
-
-
-
-
-@media screen and (max-width: 576px){
+@media screen and (max-width: 576px) {
   .mobile-only {
     display: block;
   }
-  
+
   .box--side {
     display: none;
   }
-  
+
   .box--main {
     order: 0;
     grid-column: 1 / 4;

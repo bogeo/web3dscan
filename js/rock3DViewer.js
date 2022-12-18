@@ -49,7 +49,13 @@ async function markerOnClick(layer) {
   // Models correspond to a red circle by its id and their name.
   var modelViewer = document.getElementById("hotspot-camera");
   modelViewer.style.visibility = "visible";
-  modelViewer.src = "./models/Astronaut.glb";
+ 
+  var id = layer["layer"]["feature"].properties.PROBE;
+  modelViewer.src = CrossReferencer.scan3d(id);
+  console.log("id: " + id + " -> scan3d: " + modelViewer.src);
+  console.log("id: " + id + " -> steckbrief: " + CrossReferencer.steckbrief(id));
+  fetchProfile(CrossReferencer.steckbrief(id));
+
   modelViewer.onerror = function () {
     modelViewer.style.visibility = "hidden";
     document.getElementById("hotspot-camera").src = "";

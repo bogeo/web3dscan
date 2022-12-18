@@ -134,6 +134,7 @@ function onEachFeature_asTable(feature, layer) {
     html += "</table></div>";
 
     layer.bindPopup(html);
+
   } else {
     layer.bindPopup("No properties found");
   }

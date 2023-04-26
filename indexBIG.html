@@ -1,0 +1,46 @@
+  <div class="boxes bigDisplay" id="bigDisplay">
+    <div class="box box--1 box--main">
+      <button onclick="setMain(this)">set main</button>
+      <div id="map"></div>
+    </div>
+    <div class="box box--2 box--side">
+      <button onclick="setMain(this)">
+        set main
+      </button>
+      <model-viewer id="hotspot-camera" bounds="tight" enable-pan src="./models/Handstueck_CS3_3D.glb" ar
+        ar-modes="webxr scene-viewer quick-look" camera-controls enable-pan touch-action="none"
+        camera-orbit="-30deg auto auto" max-camera-orbit="auto 100deg auto" environment-image="neutral"
+        shadow-intensity="1">
+        <div class="progress-bar hide" slot="progress-bar">
+          <div class="update-bar"></div>
+        </div>
+        <button slot="ar-button" id="ar-button">
+          View in your space
+        </button>
+
+        <button slot="hotspot-dot+X-Y+Z" class="dot" data-position="1 -1 1" data-normal="1 0 0"></button>
+        <button slot="hotspot-dim+X-Y" class="dim" data-position="1 -1 0" data-normal="1 0 0"></button>
+        <button slot="hotspot-dot+X-Y-Z" class="dot" data-position="1 -1 -1" data-normal="1 0 0"></button>
+        <button slot="hotspot-dim+X-Z" class="dim" data-position="1 0 -1" data-normal="1 0 0"></button>
+        <button slot="hotspot-dot+X+Y-Z" class="dot show" data-position="1 1 -1" data-normal="0 1 0"></button>
+        <button slot="hotspot-dim+Y-Z" class="dim show" data-position="0 -1 -1" data-normal="0 1 0"></button>
+        <button slot="hotspot-dot-X+Y-Z" class="dot show" data-position="-1 1 -1" data-normal="0 1 0"></button>
+        <button slot="hotspot-dim-X-Z" class="dim" data-position="-1 0 -1" data-normal="-1 0 0"></button>
+        <button slot="hotspot-dot-X-Y-Z" class="dot" data-position="-1 -1 -1" data-normal="-1 0 0"></button>
+        <button slot="hotspot-dim-X-Y" class="dim" data-position="-1 -1 0" data-normal="-1 0 0"></button>
+        <button slot="hotspot-dot-X-Y+Z" class="dot" data-position="-1 -1 1" data-normal="-1 0 0"></button>
+        <div id="controls" class="dim">
+          <label for="show-dimensions">Show Dimensions:</label>
+          <input id="show-dimensions" type="checkbox" checked="true">
+        </div>
+      </model-viewer>
+    </div>
+    <div class="box box--3 box--side">
+      <button onclick="setMain(this)">
+        set main
+      </button>
+      <div id="steckbrief">
+        Steckbrief
+      </div>
+    </div>
+  </div>

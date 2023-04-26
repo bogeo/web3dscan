@@ -140,4 +140,44 @@ function onEachFeature_asTable(feature, layer) {
   }
 }
 
+function fetchHandstuecke() {
+  // URL is
+  // https://kommonitor.fbg-hsbo.de/geoserver/web3d/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web3d%3AHandstuecke_Auswahl&outputFormat=application%2Fjson&CRS=4326
+  // if the CRS is not 4326 then we must make sure that returned GeoJSON uses EPSG:4326 as Leaflet requires coordinates in WPSG:4326
 
+  // servec by GeoServer the dataset can be downloaded as GeoJSON. This is non-WFS-standardized dataformat and hence not available for all WFS services
+  fetch(
+    "https://kommonitor.fbg-hsbo.de/geoserver/web3d/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web3d%3AHandstuecke_Auswahl&outputFormat=application%2Fjson&CRS=4326"
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      // integrate WFS GeoJSON data into Leaflet app
+      var handstuecke_geoJSON = L.geoJSON(data, {
+        // transforms point marker to circle object
+        pointToLayer: function (feature, latlng) {
+          var geojsonMarkerOptions = {
+            radius: 8,
+            fillColor: "#ff0000",
+            color: "#000",
+            weight: 1,
+            opacity: 1,
+            fillOpacity: 0.6,
+          };
+          return L.circleMarker(latlng, geojsonMarkerOptions);
+        },
+        // onEachFeature: function (feature, layer) {
+        //   // does this feature have a property named popupContent?
+        //   if (feature.properties && feature.properties.RWID) {
+        //     let url_3d_scene = "...";
+        //     layer.bindPopup("<b>RWID</b>: " + feature.properties.RWID + "<br><b>Link zur 3D Szene</b>: " + url_3d_scene);
+
+        //   }
+        // },
+        onEachFeature: onEachFeature_asTable,
+      }).addTo(map);
+      layerControl.addOverlay(
+        handstuecke_geoJSON.on("click", markerOnClick),
+        "Handst&uuml;cke"
+      );
+    });
+}

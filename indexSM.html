@@ -1,18 +1,20 @@
 <div class="mobile-container" id="smallDisplay">
     <div class="topnav">
       <div class="active">
+        <img src="" alt="Logo" onclick="window.location.href='https://www.hlnug.de/';" class="logo"/>
       </div>
       <div id="myLinks">
         <a href="#map" onclick="menuItemClicked('map')">Karte</a>
         <a href="#modelViewer" onclick="menuItemClicked('modelViewer')">Model-Viewer</a>
         <a href="#steckbrief" onclick="menuItemClicked('steckbrief')">Steckbrief</a>
+        <a href="" onclick="activateDesktopVersion()">Desktop Version</a>
       </div>
       <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
       </a>
     </div>
 
-    <div style="height: calc(100% - 45px);">
+    <div class="mobileBody">
       <div id="mapSM">
         <div id="map"></div>
       </div>

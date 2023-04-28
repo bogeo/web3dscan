@@ -5,9 +5,11 @@ function setMain(element) {
 
     box.classList.add("box--side");
     box.classList.remove("box--main");
+    box.children[0].style = "display: initial;";
   }
   element.parentElement.classList.remove("box--side");
   element.parentElement.classList.add("box--main");
+  element.parentElement.children[0].style = "display: none;";
 }
 
 function openNav() {

@@ -152,7 +152,7 @@ model-viewer {
   color: white;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 23px;
   display: block;
 }
 
@@ -170,7 +170,7 @@ model-viewer {
 }
 
 .active {
-  height: 45px;
+  height: 50px;
   background-color: #8DBF19;
   color: white;
 }
@@ -208,7 +208,8 @@ model-viewer {
 
 .logo {
   box-sizing: content-box;
-  height: 45px;
+  height: 35px;
+  margin: 7px 7px;
 }
 
 .mobileBody{

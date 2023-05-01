@@ -206,7 +206,7 @@ model-viewer {
   position: absolute;
 }
 
-.logo {
+.logoImage {
   box-sizing: content-box;
   height: 35px;
   margin: 7px 7px;

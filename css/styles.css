@@ -214,8 +214,21 @@ model-viewer {
 
 .mobileBody{
   position: absolute;
-  height: calc(100% - 45px);
+  height: calc(100% - 50px);
   width: 100%;
-  top: 45px;
+  top: 50px;
   z-index: -1;
+}
+
+/** ein und ausblenden des buttons desktop version**/
+@media only screen and (max-width: 500px) {
+  #actiDesc {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 500px) {
+  #actiDesc {
+    display: block;
+  }
 }

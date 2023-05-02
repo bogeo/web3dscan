@@ -1,7 +1,7 @@
 .boxes {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  height: calc(100% - 45px);
+  height: calc(100% - 50px);
   grid-template-rows: 50% 50%;
   column-gap: 10px;
 }

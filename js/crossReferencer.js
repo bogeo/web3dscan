@@ -16,6 +16,7 @@ class CrossReferencer
         switch (probe) {
           case '921':  return CrossReferencer.docPathScan3d('Handstueck_CS3_3D');
           case '5761': return CrossReferencer.docPathScan3d('Astronaut');
+          case '38094': return CrossReferencer.docPathScan3d('Handstueck_CS3_3D_old');
           default: return CrossReferencer.docPathScan3d('Handstueck_CS3_3D');  
         }
     }

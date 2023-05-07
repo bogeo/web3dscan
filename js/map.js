@@ -7,12 +7,18 @@ function initMap() {
   // set minZoom to 6 in order to prevent whole world zoom
   map = L.map("map", {
     minZoom: 6,
+    zoomControl:false 
   }).setView([50.0348485, 8.2406363], 11);
 
   map.fitBounds([
     [49.3948229196, 7.7731704009],
     [51.6540496066, 10.2340156149],
   ]);
+
+  L.control.zoom({
+    position: 'topright'
+  }).addTo(map);
+
 }
 
 function initMapControls() {

@@ -1,7 +1,7 @@
 .boxes {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  height: calc(100% - 50px);
+  height: calc(100% - var(--headerHeight));
   grid-template-rows: 50% 50%;
   column-gap: 10px;
 }
@@ -29,7 +29,7 @@
 
 .box--3 {
   overflow-y: scroll;
-  border-top: 10px solid #8DBF19;
+  border-top: 10px solid var(--accentColor);
 }
 
 .mobile-only {
@@ -37,5 +37,5 @@
   left: 45vW;
   top: 15vH;
   display: none;
-  border-top: 20px solid #8DBF19;
+  border-top: 20px solid var(--accentColor);
 }

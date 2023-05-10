@@ -1,3 +1,8 @@
+:root {
+  --accentColor: #8dbf19;
+  --headerHeight: 50px;
+}
+
 html,
 body {
   height: 100%;
@@ -11,11 +16,11 @@ body {
   left: 45vw;
   top: 15vh;
   display: none;
-  border-top: 20px solid #8dbf19;
+  border-top: 20px solid var(--accentColor);
 }
 
 .topbar {
-  background-color: #8dbf19;
+  background-color: var(--accentColor);
   margin-bottom: 5px;
 }
 
@@ -68,14 +73,14 @@ body {
 .openbtn {
   font-size: 20px;
   cursor: pointer;
-  background-color: #8dbf19;
+  background-color: var(--accentColor);
   color: white;
   padding: 10px 15px;
   border: none;
 }
 
 .openbtn:hover {
-  background-color: #8dbf19;
+  background-color: var(--accentColor);
 }
 
 .navbar img {
@@ -170,8 +175,8 @@ model-viewer {
 }
 
 .active {
-  height: 50px;
-  background-color: #8DBF19;
+  height: var(--headerHeight);
+  background-color: var(--accentColor);
   color: white;
 }
 
@@ -214,9 +219,9 @@ model-viewer {
 
 .mobileBody{
   position: absolute;
-  height: calc(100% - 50px);
+  height: calc(100% - var(--headerHeight));
   width: 100%;
-  top: 50px;
+  top: var(--headerHeight);
   z-index: -1;
 }
 

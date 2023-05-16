@@ -1,0 +1,23 @@
+<html>
+  <!-- HoloLens-Test -->
+  <head>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <!--<script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>-->
+  </head>
+  <body>
+    <a-scene background="#00000000">
+      <a-assets>
+        <a-asset-item 
+		  id="myModel" 
+		  src="https://bogeo.github.io/web3dscan/models/Handstueck_CS3_3D.glb">
+		</a-asset-item> 
+      </a-assets>
+      <a-entity 
+	    id="test"
+		gltf-model="#myModel" 
+		position="0 2 -2"
+		scale="0.02 0.02 0.02">
+	  </a-entity>
+    </a-scene>
+  </body>
+</html>

@@ -3,6 +3,9 @@ let layerControl;
 let modelViewer;
 let checkbox;
 
+let lstPt;
+let curId;
+
 function initMap() {
   // set minZoom to 6 in order to prevent whole world zoom
   map = L.map("map", {
@@ -18,6 +21,8 @@ function initMap() {
   L.control.zoom({
     position: 'topright'
   }).addTo(map);
+
+  // map.on('click', onMapClick);
 
 }
 
@@ -111,7 +116,8 @@ function initMapControls() {
   attributionControl.setPrefix("HLNUG");
 }
 
-function onEachFeature_asTable(feature, layer) {
+function onEachFeature(feature, layer) {
+
   if (feature.properties) {
     let html =
       "<div class='table-responsive'><table class='table table-striped table-sm'>";
@@ -144,7 +150,51 @@ function onEachFeature_asTable(feature, layer) {
   } else {
     layer.bindPopup("No properties found");
   }
+
+  layer.on({
+
+    // click: clickFeature
+    click: function(e){
+      // alert("Click!")
+      // console.log(e.target)
+      
+      
+      if (curId != layer.feature.properties.RWID && curId != null) {
+        // alert("Neuer Punkt!")
+
+        var classN = lstPt.defaultOptions.icon.options.className;
+
+        var myIcon = L.icon({
+          iconUrl: 'images/'+ classN +'.svg' 
+        })
+        lstPt.setIcon(myIcon)
+        // console.log(lstPt.feature.properties.RWID)
+        // console.log(e.target.feature.properties.RWID)
+        
+        
+      }
+      
+      lstPt = e.target
+      curId = layer.feature.properties.RWID;
+      // console.log(curId);
+      // console.log(e.target);
+
+      var classN = e.target.defaultOptions.icon.options.className;
+
+      var myIcon = L.icon({
+        iconUrl: 'images/'+ classN +'_active.svg' 
+      })
+
+      // console.log(e.target);
+      
+      e.target.setIcon(myIcon);
+  }
+  });
+
 }
+
+// function onMapClick(){
+  // console.log(layer.feature.properties)
 
 function fetchHandstuecke() {
   // URL is
@@ -158,32 +208,87 @@ function fetchHandstuecke() {
     .then((response) => response.json())
     .then((data) => {
       // integrate WFS GeoJSON data into Leaflet app
+
       var handstuecke_geoJSON = L.geoJSON(data, {
+        // style: function(feature){
+
+        //   return L.marker({ icon: img })
+        // },
+        
         // transforms point marker to circle object
         pointToLayer: function (feature, latlng) {
-          var geojsonMarkerOptions = {
-            radius: 8,
-            fillColor: "#ff0000",
-            color: "#000",
-            weight: 1,
-            opacity: 1,
-            fillOpacity: 0.6,
-          };
-          return L.circleMarker(latlng, geojsonMarkerOptions);
+          var img;
+          var size;
+          var clsName;
+          var val = feature.properties.BLATTNR
+          switch (true){
+            case (val < 5000):
+              img = 'images/stone.svg'
+              size = 35
+              clsName = 'stone'
+              break;
+
+            case (val > 5000 && val < 6000):
+              img = 'images/fossil.svg'
+              size = 28
+              clsName = 'fossil'
+              break;
+
+            case (val > 6000):
+              img = 'images/drill_core.svg'
+              size = 35
+              clsName = 'drill_core'
+              break;
+            default: 
+              img = 'images/stone.svg'; 
+              size = 28
+              clsName = 'stone'
+          }
+
+          var icon = L.icon({
+            iconUrl: img,
+            iconSize: [size, size],
+            className: clsName,
+          })
+          // var geojsonMarkerOptions = {
+            
+            // radius: 8,
+          //   fillColor: "#ff0000",
+          //   color: "#000",
+          //   weight: 1,
+          //   opacity: 1,
+          //   fillOpacity: 0.6,
+          // };
+
+          return L.marker(latlng, { icon: icon });//geojsonMarkerOptions);
         },
         // onEachFeature: function (feature, layer) {
-        //   // does this feature have a property named popupContent?
-        //   if (feature.properties && feature.properties.RWID) {
-        //     let url_3d_scene = "...";
-        //     layer.bindPopup("<b>RWID</b>: " + feature.properties.RWID + "<br><b>Link zur 3D Szene</b>: " + url_3d_scene);
+        //   var numbr = feature.properties.id
+        //   // var objectName = layer["layer"]["feature"]["id"];
+        //   // onEachFeature_asTable;
+        //   layer.on({
 
+        //   click: function(e){
+        //     // alert("Click")
+
+        //     // onEachFeature_asTable
         //   }
+        // //   // does this feature have a property named popupContent?
+        // //   if (feature.properties && feature.properties.RWID) {
+        // //     let url_3d_scene = "...";
+        // //     layer.bindPopup("<b>RWID</b>: " + feature.properties.RWID + "<br><b>Link zur 3D Szene</b>: " + url_3d_scene);
+        // //   }
+        // // alert("Click")
+        
+        //   });
+        //   console.log("Clicked on object: " + numbr);
         // },
-        onEachFeature: onEachFeature_asTable,
+        onEachFeature: onEachFeature,
       }).addTo(map);
+
       layerControl.addOverlay(
         handstuecke_geoJSON.on("click", markerOnClick),
-        "Handst&uuml;cke"
+        "Handst&uuml;cke",
       );
     });
 }

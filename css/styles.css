@@ -147,6 +147,7 @@ model-viewer {
   overflow: hidden;
   background-color: #333;
   position: relative;
+  z-index: 2;
 }
 
 .topnav #myLinks {
@@ -222,7 +223,7 @@ model-viewer {
   height: calc(100% - var(--headerHeight));
   width: 100%;
   top: var(--headerHeight);
-  z-index: -1;
+  z-index: 1;
 }
 
 /** ein und ausblenden des buttons desktop version**/

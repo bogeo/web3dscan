@@ -165,7 +165,7 @@ function onEachFeature(feature, layer) {
     html += "</table></div>";
 
     // to display the Popup, uncomment this:
-    layer.bindPopup(html);
+    // layer.bindPopup(html);
 
   } else {
     layer.bindPopup("No properties found");

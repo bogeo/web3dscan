@@ -3,37 +3,39 @@ let layerControl;
 let modelViewer;
 let checkbox;
 
+// object of the last selected feature
 let lstPt;
+
+// leaflet id of the current selected feature
 let curId;
 
+// initialize map
 function initMap() {
+
   // set minZoom to 6 in order to prevent whole world zoom
   map = L.map("map", {
     minZoom: 6,
-    zoomControl:false 
+    zoomControl: false
   }).setView([50.0348485, 8.2406363], 11);
 
+  // current extent
   map.fitBounds([
     [49.3948229196, 7.7731704009],
     [51.6540496066, 10.2340156149],
   ]);
 
+  // add zoom Control
   L.control.zoom({
     position: 'topright'
   }).addTo(map);
-
-  // map.on('click', onMapClick);
-
 }
 
 function initMapControls() {
   // Layer Control
 
   var osmTileLayer = L.tileLayer(
-    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-    {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }
   ).addTo(map);
 
@@ -46,42 +48,35 @@ function initMapControls() {
 
   // https://www.geoportal.hessen.de/mapbender/php/wms.php?inspire=1&layer_id=37745&withChilds=1&REQUEST=GetCapabilities&SERVICE=WMS
   var hessen_umring_wms = L.tileLayer.wms(
-    "https://sgx.geodatenzentrum.de/wms_vg1000?",
-    {
+    "https://sgx.geodatenzentrum.de/wms_vg1000?", {
       layers: "vg1000_lan",
       format: "image/png",
       transparent: true,
-      attribution:
-        "Hessisches Landesamt für Bodenmanagement und Geoinformation",
+      attribution: "Hessisches Landesamt für Bodenmanagement und Geoinformation",
     }
   );
 
   var hessen_rbz_wms = L.tileLayer.wms(
-    "https://sgx.geodatenzentrum.de/wms_vg1000?",
-    {
+    "https://sgx.geodatenzentrum.de/wms_vg1000?", {
       layers: "vg1000_rbz",
       format: "image/png",
       transparent: true,
-      attribution:
-        "Hessisches Landesamt für Bodenmanagement und Geoinformation",
+      attribution: "Hessisches Landesamt für Bodenmanagement und Geoinformation",
     }
   );
 
   var wms_dtk = L.tileLayer.wms(
-    "https://sgx.geodatenzentrum.de/wms_dtk_klein?",
-    {
+    "https://sgx.geodatenzentrum.de/wms_dtk_klein?", {
       layers: "dtk",
       format: "image/png",
       transparent: true,
-      attribution:
-        "Dienstleistungszentrum des Bundes für Geoinformation und Geodäsie",
+      attribution: "Dienstleistungszentrum des Bundes für Geoinformation und Geodäsie",
     }
   );
 
   // legend URL https://services.bgr.de/wms/geologie/gk1000/?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=0
   var wms_geologie = L.tileLayer.wms(
-    "https://services.bgr.de/wms/geologie/gk1000/?",
-    {
+    "https://services.bgr.de/wms/geologie/gk1000/?", {
       layers: "0",
       format: "image/png",
       transparent: true,
@@ -116,8 +111,32 @@ function initMapControls() {
   attributionControl.setPrefix("HLNUG");
 }
 
+// create Icons of each point in the map
+function pointIcons(classN, imgUrl) {
+
+  // drill core and stone icosn displayed larger than fossil icons
+  if (classN != 'fossil') {
+    size = 35
+  } else {
+    size = 28
+  }
+
+  // create point with url, size and className
+  var pointIcon = L.Icon.extend({
+    options: {
+      iconUrl: imgUrl,
+      iconSize: [size, size],
+      className: classN //used to distinguish symbols
+    }
+  });
+
+  return pointIcon;
+}
+
+// for each feature, this function will be called
 function onEachFeature(feature, layer) {
 
+  // generate Pop Up of the feature
   if (feature.properties) {
     let html =
       "<div class='table-responsive'><table class='table table-striped table-sm'>";
@@ -145,6 +164,7 @@ function onEachFeature(feature, layer) {
     html += "</tbody>";
     html += "</table></div>";
 
+    // to display the Popup, uncomment this:
     layer.bindPopup(html);
 
   } else {
@@ -153,49 +173,42 @@ function onEachFeature(feature, layer) {
 
   layer.on({
 
-    // click: clickFeature
-    click: function(e){
-      // alert("Click!")
-      // console.log(e.target)
-      
-      
-      if (curId != layer.feature.properties.RWID && curId != null) {
-        // alert("Neuer Punkt!")
+    click: function (e) {
 
-        var classN = lstPt.defaultOptions.icon.options.className;
+      // current id must be different to the last clicked id
+      if (curId != e.target._leaflet_id && curId != null) {
 
-        var myIcon = L.icon({
-          iconUrl: 'images/'+ classN +'.svg' 
-        })
-        lstPt.setIcon(myIcon)
-        // console.log(lstPt.feature.properties.RWID)
-        // console.log(e.target.feature.properties.RWID)
-        
-        
+        // Classname of the icon
+        var classN_last = lstPt.defaultOptions.icon.options.className;
+
+        // create Icon
+        var myIcon = pointIcons(classN_last, 'images/' + classN_last + '.svg')
+        var lastIcon = new myIcon()
+
+        // original icon wil be set to the last selected point 
+        lstPt.setIcon(lastIcon)
       }
-      
+
+      // last Point = current selected point
       lstPt = e.target
-      curId = layer.feature.properties.RWID;
-      // console.log(curId);
-      // console.log(e.target);
 
-      var classN = e.target.defaultOptions.icon.options.className;
+      // current id = unique id of each feature
+      curId = e.target._leaflet_id;
 
-      var myIcon = L.icon({
-        iconUrl: 'images/'+ classN +'_active.svg' 
-      })
+      // current Classname
+      var classN_cur = e.target.defaultOptions.icon.options.className;
 
-      // console.log(e.target);
-      
-      e.target.setIcon(myIcon);
-  }
+      // create icon for the original point
+      var myIcon2 = pointIcons(classN_cur, 'images/' + classN_cur + '_active.svg')
+      var curIcon = new myIcon2()
+
+      // set created icon
+      e.target.setIcon(curIcon);
+    }
   });
-
 }
 
-// function onMapClick(){
-  // console.log(layer.feature.properties)
-
+// readout WFS and add features to map
 function fetchHandstuecke() {
   // URL is
   // https://kommonitor.fbg-hsbo.de/geoserver/web3d/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web3d%3AHandstuecke_Auswahl&outputFormat=application%2Fjson&CRS=4326
@@ -203,87 +216,65 @@ function fetchHandstuecke() {
 
   // servec by GeoServer the dataset can be downloaded as GeoJSON. This is non-WFS-standardized dataformat and hence not available for all WFS services
   fetch(
-    "https://kommonitor.fbg-hsbo.de/geoserver/web3d/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web3d%3AHandstuecke_Auswahl&outputFormat=application%2Fjson&CRS=4326"
-  )
+      "https://kommonitor.fbg-hsbo.de/geoserver/web3d/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web3d%3AHandstuecke_Auswahl&outputFormat=application%2Fjson&CRS=4326"
+    )
     .then((response) => response.json())
     .then((data) => {
+
       // integrate WFS GeoJSON data into Leaflet app
-
       var handstuecke_geoJSON = L.geoJSON(data, {
-        // style: function(feature){
 
-        //   return L.marker({ icon: img })
-        // },
-        
-        // transforms point marker to circle object
+        // add features to map
         pointToLayer: function (feature, latlng) {
-          var img;
-          var size;
-          var clsName;
-          var val = feature.properties.BLATTNR
-          switch (true){
-            case (val < 5000):
-              img = 'images/stone.svg'
-              size = 35
+
+          // TODO temporarily to display diffenrent icons, the right attribute must be added to the WFS
+          // value = last character in WFS attribute "PROBE"
+          // 0-2 = stone; 3-6 = fossil; 7-9 = drill core
+          var val = parseInt(feature.properties.PROBE.slice(-1));
+
+          // switch case to symbolize the features with the right icon
+          switch (true) {
+            case (val < 3):
+              imgUrl = 'images/stone.svg'
               clsName = 'stone'
               break;
 
-            case (val > 5000 && val < 6000):
-              img = 'images/fossil.svg'
-              size = 28
+            case (val > 2 && val < 7):
+              imgUrl = 'images/fossil.svg'
               clsName = 'fossil'
               break;
 
-            case (val > 6000):
-              img = 'images/drill_core.svg'
-              size = 35
+            case (val > 6):
+              imgUrl = 'images/drill_core.svg'
               clsName = 'drill_core'
               break;
-            default: 
-              img = 'images/stone.svg'; 
-              size = 28
+
+            default:
+              console.log(val)
+              imgUrl = 'images/stone.svg';
               clsName = 'stone'
           }
+          
+          // call function to get the icon
+          var icon = pointIcons(clsName, imgUrl)
+          var myIcon = new icon()
 
-          var icon = L.icon({
-            iconUrl: img,
-            iconSize: [size, size],
-            className: clsName,
-          })
-          // var geojsonMarkerOptions = {
-            
-            // radius: 8,
-          //   fillColor: "#ff0000",
-          //   color: "#000",
-          //   weight: 1,
-          //   opacity: 1,
-          //   fillOpacity: 0.6,
-          // };
-
-          return L.marker(latlng, { icon: icon });//geojsonMarkerOptions);
+          // return marker with coordinates and icon
+          return L.marker(latlng, {
+            icon: myIcon
+          });
         },
-        // onEachFeature: function (feature, layer) {
-        //   var numbr = feature.properties.id
-        //   // var objectName = layer["layer"]["feature"]["id"];
-        //   // onEachFeature_asTable;
-        //   layer.on({
 
-        //   click: function(e){
-        //     // alert("Click")
-
-        //     // onEachFeature_asTable
-        //   }
         // //   // does this feature have a property named popupContent?
         // //   if (feature.properties && feature.properties.RWID) {
         // //     let url_3d_scene = "...";
         // //     layer.bindPopup("<b>RWID</b>: " + feature.properties.RWID + "<br><b>Link zur 3D Szene</b>: " + url_3d_scene);
         // //   }
-        // // alert("Click")
         
-        //   });
-        //   console.log("Clicked on object: " + numbr);
-        // },
+        // on each feature fuction "onEachFeature" will be called
         onEachFeature: onEachFeature,
+
+        // all events added to the map
       }).addTo(map);
 
       layerControl.addOverlay(

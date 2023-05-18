@@ -2,7 +2,7 @@ class CrossReferencer
 {
       //JQuery-independent Method to load a local JSON-file.
       static readJSONFile(file){
-        //<REMARK>
+        //In case of CORS-errors, read the following:
         //Due to updates on CORS standards/settings, EVERY local file is regarded as opaque and trying to acess it will throw an error.
         //See also: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSRequestNotHttp?utm_source=devtools&utm_medium=firefox-cors-errors&utm_campaign=default.
         //The suggested "easy" solution is to setup a simple Python(>2.7) http.server in the directory, see:
@@ -11,7 +11,7 @@ class CrossReferencer
         //Then file = <filename> or file = <relative filepath from root-folder>
         //will enable the XMLHttpRequest-object to bypass the "CORS"-barrier. Quote from the sources above:
         //"As all files are served from the same scheme and domain (localhost) they all have the same origin, and do not trigger cross-origin errors."
-        //</REMARK>
+        //
         //Create new request-object
         var rawFile = new XMLHttpRequest();
         //Make it a GET-request and put (local) filepath
@@ -32,7 +32,9 @@ class CrossReferencer
       //Filter the extracted array by the given probe(-id)
       return items.filter(items => items.probe == probe);
     }
-
+    
+    //Get the Steckbrief for a given probe(-id)
+    //@return: A string that represents the document-path of the Steckbrief.
     static steckbrief(probe) {
       var xRefs = this.getAllByProbe(probe);
       if (xRefs.length > 0){
@@ -41,11 +43,15 @@ class CrossReferencer
         return CrossReferencer.docPath('steckbrief');
       }
     }
-
+    
+    //Derive the document-path of a Steckbrief for a given modelname.
+    //Used in method "steckbrief".
     static docPath(modelname) {
         return "./steckbriefe/" + modelname + ".xml"; 
     }
   
+    //Get the 3ddata for a given probe(-id).
+    //@return: A string that represents the document-path of the 3ddata.
     static scan3d(probe) {
       var xRefs = this.getAllByProbe(probe);
       if (xRefs.length > 0){
@@ -55,6 +61,8 @@ class CrossReferencer
       }
     }
   
+    //Derive the document-path of the 3dfile for a given modelname
+    //Used in method "scan3d".
     static docPathScan3d(modelname) {
         //console.log(modelname);
         return "./models/" + modelname + ".glb";

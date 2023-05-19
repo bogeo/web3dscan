@@ -37,6 +37,39 @@ function initModelViewer() {
       }
     });
   });
+
+  //ANFANG Vorbereitung Bemaßung
+  // update svg
+  // function drawLine(svgLine, dotHotspot1, dotHotspot2, dimensionHotspot) {
+  //   if (dotHotspot1 && dotHotspot2) {
+  //     svgLine.setAttribute('x1', dotHotspot1.canvasPosition.x);
+  //     svgLine.setAttribute('y1', dotHotspot1.canvasPosition.y);
+  //     svgLine.setAttribute('x2', dotHotspot2.canvasPosition.x);
+  //     svgLine.setAttribute('y2', dotHotspot2.canvasPosition.y);
+
+  //     // use provided optional hotspot to tie visibility of this svg line to
+  //     if (dimensionHotspot && !dimensionHotspot.facingCamera) {
+  //       svgLine.classList.add('hide');
+  //     }
+  //     else {
+  //       svgLine.classList.remove('hide');
+  //     }
+  //   }
+  // }
+
+  // const dimLines = modelViewer.querySelectorAll('line');
+
+  // const renderSVG = () => {
+  //   drawLine(dimLines[0], modelViewer.queryHotspot('hotspot-dot+X-Y+Z'), modelViewer.queryHotspot('hotspot-dot+X-Y-Z'), modelViewer.queryHotspot('hotspot-dim+X-Y'));
+  //   drawLine(dimLines[1], modelViewer.queryHotspot('hotspot-dot+X-Y-Z'), modelViewer.queryHotspot('hotspot-dot+X+Y-Z'), modelViewer.queryHotspot('hotspot-dim+X-Z'));
+  //   drawLine(dimLines[2], modelViewer.queryHotspot('hotspot-dot+X+Y-Z'), modelViewer.queryHotspot('hotspot-dot-X+Y-Z')); // always visible
+  //   drawLine(dimLines[3], modelViewer.queryHotspot('hotspot-dot-X+Y-Z'), modelViewer.queryHotspot('hotspot-dot-X-Y-Z'), modelViewer.queryHotspot('hotspot-dim-X-Z'));
+  //   drawLine(dimLines[4], modelViewer.queryHotspot('hotspot-dot-X-Y-Z'), modelViewer.queryHotspot('hotspot-dot-X-Y+Z'), modelViewer.queryHotspot('hotspot-dim-X-Y'));
+  // };
+
+  // modelViewer.addEventListener('camera-change', renderSVG);
+  //ENDE Vorbereitung Bemanßung
+
   modelViewer.addEventListener("load", () => {
     const center = modelViewer.getCameraTarget();
     const size = modelViewer.getDimensions();
@@ -113,6 +146,10 @@ function initModelViewer() {
       name: "hotspot-dot-X-Y+Z",
       position: `${center.x - x2} ${center.y - y2} ${center.z + z2}`,
     });
+  
+  //ANFANG Vorbereitung Bemaßung
+  // renderSVG();
+  //ENDE Vorbereitung Bemaßung
   });
 }
 

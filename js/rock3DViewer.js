@@ -150,6 +150,26 @@ function initModelViewer() {
   //ANFANG Vorbereitung Bemaßung
   // renderSVG();
   //ENDE Vorbereitung Bemaßung
+
+  let material = modelViewer.model.materials[0];
+  material.pbrMetallicRoughness.setMetallicFactor(1);
+  material.pbrMetallicRoughness.setRoughnessFactor(1);
+
+  let metalnessDisplay = document.querySelector("#metalness-value");
+  let roughnessDisplay = document.querySelector("#roughness-value");
+
+  metalnessDisplay.textContent = material.pbrMetallicRoughness.metallicFactor;
+  roughnessDisplay.textContent = material.pbrMetallicRoughness.roughnessFactor;
+ 
+  document.querySelector('#metalness').addEventListener('input', (event) => {
+    material.pbrMetallicRoughness.setMetallicFactor(event.target.value);
+    metalnessDisplay.textContent = event.target.value;
+  });
+
+  document.querySelector('#roughness').addEventListener('input', (event) => {
+    material.pbrMetallicRoughness.setRoughnessFactor(event.target.value);
+    roughnessDisplay.textContent = event.target.value;
+  });
   });
 }
 

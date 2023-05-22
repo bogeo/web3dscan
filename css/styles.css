@@ -115,6 +115,11 @@ model-viewer {
   width: 100%;
 }
 
+.controlsMR{
+  text-align: right;
+  padding-right: 10px;
+}
+
 @media screen and (max-width: 576px) {
   .mobile-only {
     display: block;

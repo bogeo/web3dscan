@@ -152,7 +152,6 @@ model-viewer {
 
 .topnav #myLinks {
   display: none;
-  z-index: 3;
 }
 
 .topnav a {

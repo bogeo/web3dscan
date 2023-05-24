@@ -33,7 +33,7 @@ class CrossReferencer
       return items.filter(items => items.probe == probe);
     }
     
-    //Get the Steckbrief for a given probe(-id)
+    //Get the Steckbrief-path for a given probe(-id)
     //@return: A string that represents the document-path of the Steckbrief.
     static steckbrief(probe) {
       var xRefs = this.getAllByProbe(probe);
@@ -50,7 +50,7 @@ class CrossReferencer
         return "./steckbriefe/" + modelname + ".xml"; 
     }
   
-    //Get the 3ddata for a given probe(-id).
+    //Get the 3ddata-path for a given probe(-id).
     //@return: A string that represents the document-path of the 3ddata.
     static scan3d(probe) {
       var xRefs = this.getAllByProbe(probe);

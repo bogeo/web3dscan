@@ -237,7 +237,6 @@ model-viewer {
     display: none;
   }
 }
-
 @media only screen and (min-width: 500px) {
   #actiDesc {
     display: block;

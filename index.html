@@ -66,11 +66,14 @@
       $.get("indexBIG.html", function(response) {
         document.body.innerHTML = response;});
     }
+    /** Funktion zum Auswählen der mobilen Version auf großen Bildschirmen**/
     function activateMobileVersion()
     {
+      /** standardmäßig wird die map als erstes ausgewählt **/
       if (window.location.hash.length === 0) {
         window.location = window.location +"#map";
       }
+      /** es werden alle fenster auf 'nicht zeigen' gesetzt und nur das ausgewählte dann angezeigt **/
       $.get("indexSM.html", function(response) {
         document.body.innerHTML = response;
         document.getElementById("mapSM").style.display = "none";
@@ -80,6 +83,7 @@
         main();
       });
     }
+    /** Funktion zum Auswählen der desktop Version auf großen Bildschirmen**/
     function activateDesktopVersion()
     {
       $.get("indexBIG.html", function(response) {

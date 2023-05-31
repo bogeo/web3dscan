@@ -26,15 +26,28 @@ async function markerOnClick(layer) {
 }
 
 function initModelViewer() {
-  modelViewer = document.querySelector("#hotspot-camera");
-  checkbox = modelViewer.querySelector("#show-dimensions");
+  const modelViewer = document.querySelector("#hotspot-camera");
+  const checkbox = modelViewer.querySelector("#show-dimensions");
+  //Function to show/hide the dimension-elements in the model-viewer (used below)
+  function setVisibility(element) {
+    if (checkbox.checked) {
+      //alert("TEST! CHECKED!");
+      element.classList.remove('hide');
+    } else {
+      //alert("TEST! UNCHECKED!");
+      element.classList.add('hide');
+    }
+  }
   checkbox.addEventListener("change", () => {
+    //Not working at the moment. The following line is there to hide the dimension-lines
+    //setVisibility(modelViewer.querySelector('#dimLines'));
     modelViewer.querySelectorAll("button").forEach((hotspot) => {
-      if (checkbox.checked) {
-        hotspot.classList.remove("hide");
-      } else {
-        hotspot.classList.add("hide");
-      }
+      setVisibility(hotspot);
+      // if (checkbox.checked) {
+      //   hotspot.classList.remove("hide");
+      // } else {
+      //   hotspot.classList.add("hide");
+      // }
     });
   });
 

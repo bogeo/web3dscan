@@ -55,6 +55,20 @@
               <p>Roughness: <span id="roughness-value"></span></p>
               <input id="roughness" type="range" min="0" max="1" step="0.01" value="1">
             </div>
+            <div>
+              <label for="neutral">Neutral Lighting: </label>
+              <input id="neutral" type="checkbox" checked="true">
+            </div>
+            <div class="controlsTextur">
+              <p>Textur</p>
+              <select id="normals2">
+                <option>mit Textur</option>
+                <option value="./images/ohne_Textur.jpg">ohne Textur</option>
+              </select>
+            </div>
+            <div class="controls" id="color-controls">
+              <button data-color="#d6d6d6">Grau</button>
+            </div>
           </div>
         </model-viewer>
       </div>

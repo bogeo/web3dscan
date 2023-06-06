@@ -183,6 +183,36 @@ function initModelViewer() {
     material.pbrMetallicRoughness.setRoughnessFactor(event.target.value);
     roughnessDisplay.textContent = event.target.value;
   });
+
+  // neutrale Beleuchtungsumgebung
+  const checkbox = document.querySelector('#neutral');
+  
+  checkbox.addEventListener('change',() => {
+    modelViewer.environmentImage = checkbox.checked ? '' : 'legacy';
+  });
+  //Textur wechseln
+  const createAndApplyTexture = async (channel, event) => {
+    if (event.target.value == "mit Textur") {
+      // Clears the texture.
+      material[channel].setTexture(null);
+      material.pbrMetallicRoughness['baseColorTexture'].setTexture(null);
+    }else if (event.target.value) {
+      
+      // Creates a new texture.
+      const texture = await modelViewer.createTexture(event.target.value);
+      material.pbrMetallicRoughness['baseColorTexture'].setTexture(texture)
+   }
+  }
+    document.querySelector('#normals2').addEventListener('input', (event) => {
+     createAndApplyTexture('normalTexture', event);
+    });
+
+  //Farbe wechseln
+  document.querySelector('#color-controls').addEventListener('click', (event) => {
+    const colorString = event.target.dataset.color;
+    const [material] = modelViewer.model.materials;
+    material.pbrMetallicRoughness.setBaseColorFactor(colorString);
+  });
   });
 }
 

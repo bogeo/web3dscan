@@ -120,6 +120,12 @@ model-viewer {
   padding-right: 10px;
 }
 
+.controlsTextur{
+  text-align: right;
+  padding-top: 10px;
+  padding-block-end: 15px;
+}
+
 @media screen and (max-width: 576px) {
   .mobile-only {
     display: block;

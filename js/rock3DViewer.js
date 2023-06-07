@@ -27,10 +27,13 @@ async function markerOnClick(layer) {
 
 function initModelViewer() {
   const modelViewer = document.querySelector("#hotspot-camera");
-  const checkbox = modelViewer.querySelector("#show-dimensions");
+  const checkboxShowDimensions = modelViewer.querySelector("#show-dimensions");
+  //Set "Show Dimensions" initially to flase/unchecked;
+  checkboxShowDimensions.checked = false;
+
   //Function to show/hide the dimension-elements in the model-viewer (used below)
   function setVisibility(element) {
-    if (checkbox.checked) {
+    if (checkboxShowDimensions.checked) {
       //alert("TEST! CHECKED!");
       element.classList.remove('hide');
     } else {
@@ -38,10 +41,16 @@ function initModelViewer() {
       element.classList.add('hide');
     }
   }
-  checkbox.addEventListener("change", () => {
-    //Not working at the moment. The following line is there to hide the dimension-lines
-    //setVisibility(modelViewer.querySelector('#dimLines'));
-    modelViewer.querySelectorAll("button").forEach((hotspot) => {
+  //Run the function initially to hide the dimensions
+  modelViewer.querySelectorAll('button:not([notHideWithDimensions])').forEach((hotspot) => {
+    setVisibility(hotspot);
+  });
+  //Add the show/hide-Dimensions event to the checkbox
+  checkboxShowDimensions.addEventListener("change", () => {
+    //<!--BEGIN prepare measuring-lines-->
+    setVisibility(modelViewer.querySelector('#dimLines'));
+    //<!--END prepare measuring-lines-->
+    modelViewer.querySelectorAll('button:not([notHideWithDimensions])').forEach((hotspot) => {
       setVisibility(hotspot);
       // if (checkbox.checked) {
       //   hotspot.classList.remove("hide");
@@ -51,37 +60,37 @@ function initModelViewer() {
     });
   });
 
-  //ANFANG Vorbereitung Bemaßung
+  //<!--BEGIN prepare measuring-lines-->
   // update svg
-  // function drawLine(svgLine, dotHotspot1, dotHotspot2, dimensionHotspot) {
-  //   if (dotHotspot1 && dotHotspot2) {
-  //     svgLine.setAttribute('x1', dotHotspot1.canvasPosition.x);
-  //     svgLine.setAttribute('y1', dotHotspot1.canvasPosition.y);
-  //     svgLine.setAttribute('x2', dotHotspot2.canvasPosition.x);
-  //     svgLine.setAttribute('y2', dotHotspot2.canvasPosition.y);
+  function drawLine(svgLine, dotHotspot1, dotHotspot2, dimensionHotspot) {
+    if (dotHotspot1 && dotHotspot2) {
+      svgLine.setAttribute('x1', dotHotspot1.canvasPosition.x);
+      svgLine.setAttribute('y1', dotHotspot1.canvasPosition.y);
+      svgLine.setAttribute('x2', dotHotspot2.canvasPosition.x);
+      svgLine.setAttribute('y2', dotHotspot2.canvasPosition.y);
 
-  //     // use provided optional hotspot to tie visibility of this svg line to
-  //     if (dimensionHotspot && !dimensionHotspot.facingCamera) {
-  //       svgLine.classList.add('hide');
-  //     }
-  //     else {
-  //       svgLine.classList.remove('hide');
-  //     }
-  //   }
-  // }
+      // use provided optional hotspot to tie visibility of this svg line to
+      if (dimensionHotspot && !dimensionHotspot.facingCamera) {
+        svgLine.classList.add('hide');
+      }
+      else {
+        svgLine.classList.remove('hide');
+      }
+    }
+  }
 
-  // const dimLines = modelViewer.querySelectorAll('line');
+  const dimLines = modelViewer.querySelectorAll('line');
 
-  // const renderSVG = () => {
-  //   drawLine(dimLines[0], modelViewer.queryHotspot('hotspot-dot+X-Y+Z'), modelViewer.queryHotspot('hotspot-dot+X-Y-Z'), modelViewer.queryHotspot('hotspot-dim+X-Y'));
-  //   drawLine(dimLines[1], modelViewer.queryHotspot('hotspot-dot+X-Y-Z'), modelViewer.queryHotspot('hotspot-dot+X+Y-Z'), modelViewer.queryHotspot('hotspot-dim+X-Z'));
-  //   drawLine(dimLines[2], modelViewer.queryHotspot('hotspot-dot+X+Y-Z'), modelViewer.queryHotspot('hotspot-dot-X+Y-Z')); // always visible
-  //   drawLine(dimLines[3], modelViewer.queryHotspot('hotspot-dot-X+Y-Z'), modelViewer.queryHotspot('hotspot-dot-X-Y-Z'), modelViewer.queryHotspot('hotspot-dim-X-Z'));
-  //   drawLine(dimLines[4], modelViewer.queryHotspot('hotspot-dot-X-Y-Z'), modelViewer.queryHotspot('hotspot-dot-X-Y+Z'), modelViewer.queryHotspot('hotspot-dim-X-Y'));
-  // };
+  const renderSVG = () => {
+    drawLine(dimLines[0], modelViewer.queryHotspot('hotspot-dot+X-Y+Z'), modelViewer.queryHotspot('hotspot-dot+X-Y-Z'), modelViewer.queryHotspot('hotspot-dim+X-Y'));
+    drawLine(dimLines[1], modelViewer.queryHotspot('hotspot-dot+X-Y-Z'), modelViewer.queryHotspot('hotspot-dot+X+Y-Z'), modelViewer.queryHotspot('hotspot-dim+X-Z'));
+    drawLine(dimLines[2], modelViewer.queryHotspot('hotspot-dot+X+Y-Z'), modelViewer.queryHotspot('hotspot-dot-X+Y-Z')); // always visible
+    drawLine(dimLines[3], modelViewer.queryHotspot('hotspot-dot-X+Y-Z'), modelViewer.queryHotspot('hotspot-dot-X-Y-Z'), modelViewer.queryHotspot('hotspot-dim-X-Z'));
+    drawLine(dimLines[4], modelViewer.queryHotspot('hotspot-dot-X-Y-Z'), modelViewer.queryHotspot('hotspot-dot-X-Y+Z'), modelViewer.queryHotspot('hotspot-dim-X-Y'));
+  };
 
-  // modelViewer.addEventListener('camera-change', renderSVG);
-  //ENDE Vorbereitung Bemanßung
+  modelViewer.addEventListener('camera-change', renderSVG);
+  //<!--END prepare measuring-lines-->
 
   modelViewer.addEventListener("load", () => {
     const center = modelViewer.getCameraTarget();
@@ -160,9 +169,8 @@ function initModelViewer() {
       position: `${center.x - x2} ${center.y - y2} ${center.z + z2}`,
     });
   
-  //ANFANG Vorbereitung Bemaßung
-  // renderSVG();
-  //ENDE Vorbereitung Bemaßung
+  //Initial call of rendering the measuring-lines
+  renderSVG();
 
   let material = modelViewer.model.materials[0];
   material.pbrMetallicRoughness.setMetallicFactor(1);

@@ -44,7 +44,7 @@
           <button slot="hotspot-dot-X-Y+Z" class="dot" data-position="-1 -1 1" data-normal="-1 0 0"></button>
           <div id="controls" class="dim">
             <label for="show-dimensions">Show Dimensions:</label>
-            <input id="show-dimensions" type="checkbox" checked="true">
+            <input id="show-dimensions" type="checkbox" checked="false">
           </div>
           <div class="controlsMR">
             <div>
@@ -59,15 +59,15 @@
               <label for="neutral">Neutral Lighting: </label>
               <input id="neutral" type="checkbox" checked="true">
             </div>
-            <div class="controlsTextur">
+            <div class="controlsTextur" >
               <p>Textur</p>
-              <select id="normals2">
-                <option>mit Textur</option>
-                <option value="./images/ohne_Textur.jpg">ohne Textur</option>
+              <select id="normals2" >
+                <option >mit Textur</option>
+                <option value="./images/ohne_Textur.jpg" >ohne Textur</option>
               </select>
             </div>
             <div class="controls" id="color-controls">
-              <button data-color="#d6d6d6">Grau</button>
+              <button data-color="#d6d6d6" notHideWithDimensions>Grau</button>
             </div>
           </div>
         </model-viewer>

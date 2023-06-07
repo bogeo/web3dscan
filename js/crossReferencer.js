@@ -30,7 +30,7 @@ class CrossReferencer
     static getAllByProbe(probe){
       var items = this.xRefJSON.items;
       //Filter the extracted array by the given probe(-id)
-      return items.filter(items => items.probe == probe);
+      return items.filter(items => items.probe === probe);
     }
     
     //Get the Steckbrief-path for a given probe(-id)

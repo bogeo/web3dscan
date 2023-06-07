@@ -41,10 +41,7 @@ function initModelViewer() {
       element.classList.add('hide');
     }
   }
-  //Run the function initially to hide the dimensions
-  modelViewer.querySelectorAll('button:not([notHideWithDimensions])').forEach((hotspot) => {
-    setVisibility(hotspot);
-  });
+
   //Add the show/hide-Dimensions event to the checkbox
   checkboxShowDimensions.addEventListener("change", () => {
     //<!--BEGIN prepare measuring-lines-->

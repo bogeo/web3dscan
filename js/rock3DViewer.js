@@ -49,11 +49,6 @@ function initModelViewer() {
     //<!--END prepare measuring-lines-->
     modelViewer.querySelectorAll('button:not([notHideWithDimensions])').forEach((hotspot) => {
       setVisibility(hotspot);
-      // if (checkbox.checked) {
-      //   hotspot.classList.remove("hide");
-      // } else {
-      //   hotspot.classList.add("hide");
-      // }
     });
   });
 

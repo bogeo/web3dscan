@@ -54,3 +54,19 @@ function fetchProfile(steckbriefName) {
       console.log("Fehler: bei Auslesen der XML-Datei " + error);
     });
 }
+
+/**Methode mit der der Steckbrief als Tabelle in das jeweilige fenster geschrieben wird. Die Daten sind die Daten die der WFS uns zurück gibt.**/
+function fetchProfileTable(obj) {
+  let tableString = "<h3 style='padding-left: 40px;'>Steckbrief</h3><table>";
+  if (obj === 0) document.getElementById("steckbrief").innerHTML = "<div>Kein Handstück ausgewählt</div>";
+  else {
+    for (let oneObj in obj["properties"]){
+      if (obj["properties"][oneObj] !== "")
+      {
+        tableString = tableString + "<tr><td style='background-color: lightgray'>"+oneObj+"</td><td>"+obj["properties"][oneObj]+"</td></tr>";
+      }
+    }
+    tableString = tableString + "</table>";
+    document.getElementById("steckbrief").innerHTML = tableString;
+  }
+}

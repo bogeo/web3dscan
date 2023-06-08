@@ -12,7 +12,9 @@ async function markerOnClick(layer) {
   modelViewer.src = CrossReferencer.scan3d(id);
   console.log("id: " + id + " -> scan3d: " + modelViewer.src);
   console.log("id: " + id + " -> steckbrief: " + CrossReferencer.steckbrief(id));
-  fetchProfile(CrossReferencer.steckbrief(id));
+  //fetchProfile(CrossReferencer.steckbrief(id));
+  /**es wird der steckbrief geladen zu dem angeklickten feature**/
+  fetchProfileTable(layer["layer"]["feature"]);
 
   modelViewer.onerror = function () {
     modelViewer.style.visibility = "hidden";

@@ -23,12 +23,12 @@ class CrossReferencer
     }
 
     //Load the local file with the crossReference-Information
-    static xRefJSON = CrossReferencer.readJSONFile("xReferencer.json");
+    static crossRefJSON = CrossReferencer.readJSONFile("CrossReferencer.json");
     
     //For a given probe(-id) get all entities in the xRef-Source with the same probe(-id).
     //@return: an array with all found entities. Empty, if no such probe(-id).
     static getAllByProbe(probe){
-      var items = this.xRefJSON.items;
+      var items = this.crossRefJSON.items;
       //Filter the extracted array by the given probe(-id)
       return items.filter(items => items.probe === probe);
     }

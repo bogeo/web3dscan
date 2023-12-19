@@ -2,6 +2,6 @@
     "items":[
         {"probe":"921","steckbrief":"steckbrief","scan3d":"Handstueck_CS3_3D"},
         {"probe":"5761","steckbrief":"steckbrief2","scan3d":"Astronaut"},
-        {"probe":"38094","steckbrief":"steckbrief","scan3d":"Handstueck_CS3_3D_old"}
+        {"probe":"38094","steckbrief":"steckbriefe","scan3d":"Handstueck_CS3_3D_old"}
         ]
     }

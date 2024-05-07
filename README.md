@@ -1,2 +1,1 @@
-- Prototypen des Screen-Designs der Gesamtanwendung
-- Autor: Dennis Klein 
+- Quellcode-Repository zu Web3dScan-Projekt der Hochschule Bochum

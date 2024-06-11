@@ -54,7 +54,7 @@ function initMapControls() {
       transparent: true,
       attribution: "Hessisches Landesamt für Bodenmanagement und Geoinformation",
     }
-  );
+  ).addTo(map); // Die Landesgrenzen von Hessen beim Anwendungsstart darstellen
 
   var hessen_rbz_wms = L.tileLayer.wms(
     "https://sgx.geodatenzentrum.de/wms_vg1000?", {

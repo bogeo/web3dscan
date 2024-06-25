@@ -20,6 +20,10 @@
   <link rel="stylesheet" href="css/viewer.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+  
+</head>
+<body>
+
   <!-- Scripts (defer: the DOM is loaded)-->
   <script defer src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
           integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
@@ -86,13 +90,13 @@
         document.body.innerHTML = response;});
     }
   </script>
-</head>
-<body>
+
+  <script defer type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <script defer src="js/setMainWindow.js"></script>
+  <script defer src="js/steckbrief.js" type="text/javascript"></script>
+  <script defer src="js/map.js" type="text/javascript"></script>
+  <script defer src="js/rock3DViewer.js" type="text/javascript"></script>
+  <script defer src="js/crossReferencer.js" type="text/javascript"></script>
+  <script defer src="js/main.js" type="text/javascript"></script>
 </body>
-<script defer type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-<script defer src="js/setMainWindow.js"></script>
-<script defer src="js/steckbrief.js" type="text/javascript"></script>
-<script defer src="js/map.js" type="text/javascript"></script>
-<script defer src="js/rock3DViewer.js" type="text/javascript"></script>
-<script defer src="js/crossReferencer.js" type="text/javascript"></script>
-<script defer src="js/main.js" type="text/javascript"></script>
+

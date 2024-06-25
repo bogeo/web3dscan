@@ -114,7 +114,7 @@ function initMapControls() {
 // create Icons of each point in the map
 function pointIcons(classN, imgUrl) {
 
-  // drill core and stone icosn displayed larger than fossil icons
+  // drill core and stone icons displayed larger than fossil icons
   if (classN != 'fossil') {
     size = 35
   } else {
@@ -227,6 +227,7 @@ function fetchHandstuecke() {
         // add features to map
         pointToLayer: function (feature, latlng) {
 
+          /* *OLD IMPLEMENTATION*
           // TODO temporarily to display diffenrent icons, the right attribute must be added to the WFS
           // value = last character in WFS attribute "PROBE"
           // 0-2 = stone; 3-6 = fossil; 7-9 = drill core
@@ -251,6 +252,33 @@ function fetchHandstuecke() {
 
             default:
               console.log(val)
+              imgUrl = 'images/stone.svg';
+              clsName = 'stone'
+          }
+          */
+
+          // type of feature (Gestein, Fossil, Bohrkern, unbekannt (by default Gestein))
+          var type = feature.properties.Art;
+          
+          // switch case to symbolize the features with the right icon
+          switch (true) {
+            case (type === 'Gestein'):
+              imgUrl = 'images/stone.svg'
+              clsName = 'stone'
+              break;
+
+            case (type === 'Fossil'):
+              imgUrl = 'images/fossil.svg'
+              clsName = 'fossil'
+              break;
+
+            case (type === 'Bohrkern'):
+              imgUrl = 'images/drill_core.svg'
+              clsName = 'drill_core'
+              break;
+
+            default:
+              console.log(type)
               imgUrl = 'images/stone.svg';
               clsName = 'stone'
           }

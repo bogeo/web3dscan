@@ -8,13 +8,13 @@ async function markerOnClick(layer) {
   var modelViewer = document.getElementById("hotspot-camera");
   modelViewer.style.visibility = "visible";
  
-  var id = layer["layer"]["feature"].properties.PROBE;
+  var id = layer["layer"]["feature"].properties.NR;
   modelViewer.src = CrossReferencer.scan3d(id);
   console.log("id: " + id + " -> scan3d: " + modelViewer.src);
   console.log("id: " + id + " -> steckbrief: " + CrossReferencer.steckbrief(id));
   //fetchProfile(CrossReferencer.steckbrief(id));
   /**es wird der steckbrief geladen zu dem angeklickten feature**/
-  fetchProfileTable(layer["layer"]["feature"]);
+  fetchProfile(CrossReferencer.steckbrief(id));
 
   modelViewer.onerror = function () {
     modelViewer.style.visibility = "hidden";

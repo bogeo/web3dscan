@@ -234,7 +234,7 @@ function fetchHandstuecke() {
           // TODO temporarily to display diffenrent icons, the right attribute must be added to the WFS
           // value = last character in WFS attribute "PROBE"
           // 0-2 = stone; 3-6 = fossil; 7-9 = drill core
-          var val = parseInt(feature.properties.PROBE.slice(-1));
+          var val = parseInt(feature.properties['NR'].slice(-1));
 
           // switch case to symbolize the features with the right icon
           switch (true) {

@@ -27,16 +27,16 @@ class CrossReferencer
     
     //For a given probe(-id) get all entities in the xRef-Source with the same probe(-id).
     //@return: an array with all found entities. Empty, if no such probe(-id).
-    static getAllByProbe(probe){
+    static getAllByNR(probe){
       var items = this.crossRefJSON.items;
       //Filter the extracted array by the given probe(-id)
-      return items.filter(items => items.probe === probe);
+      return items.filter(items => items['NR'] === probe);
     }
     
     //Get the Steckbrief-path for a given probe(-id)
     //@return: A string that represents the document-path of the Steckbrief.
     static steckbrief(probe) {
-      var xRefs = this.getAllByProbe(probe);
+      var xRefs = this.getAllByNR(probe);
       if (xRefs.length > 0){
         return CrossReferencer.docPath(xRefs[0].steckbrief);
       } else {
@@ -53,11 +53,11 @@ class CrossReferencer
     //Get the 3ddata-path for a given probe(-id).
     //@return: A string that represents the document-path of the 3ddata.
     static scan3d(probe) {
-      var xRefs = this.getAllByProbe(probe);
+      var xRefs = this.getAllByNR(probe);
       if (xRefs.length > 0){
         return CrossReferencer.docPathScan3d(xRefs[0].scan3d);
       } else {
-        return CrossReferencer.docPathScan3d('Handstueck_CS3_3D');
+        return CrossReferencer.docPathScan3d('41_12_04');
       }
     }
   

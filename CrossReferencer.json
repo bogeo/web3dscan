@@ -2,6 +2,16 @@
     "items":[
         {"probe":"921","steckbrief":"steckbrief","scan3d":"Handstueck_CS3_3D"},
         {"probe":"5761","steckbrief":"steckbrief2","scan3d":"Astronaut"},
-        {"probe":"38094","steckbrief":"steckbrief","scan3d":"Handstueck_CS3_3D_old"}
+        {"probe":"38094","steckbrief":"steckbrief","scan3d":"Handstueck_CS3_3D_old"},
+        {"NR":"19-07-01","steckbrief":"steckbrief_19_07_01","scan3d":"19_07_01"},
+        {"NR":"25-05-01","steckbrief":"steckbrief_25_05_01","scan3d":"25_05_01"},
+        {"NR":"27-03-05","steckbrief":"steckbrief_27_03_05","scan3d":"27_03_05"},
+        {"NR":"30-03-01","steckbrief":"steckbrief_30_03_01","scan3d":"30_03_01"},
+        {"NR":"30-05-14","steckbrief":"steckbrief","scan3d":"30_05_14"},
+        {"NR":"32-02-15","steckbrief":"steckbrief","scan3d":"32_02_15"},
+        {"NR":"34-05-00","steckbrief":"steckbrief","scan3d":"34_05_00"},
+        {"NR":"34-11-04","steckbrief":"steckbrief","scan3d":"34_11_04"},
+        {"NR":"37-11-16","steckbrief":"steckbrief","scan3d":"37_11_16"},
+        {"NR":"41-12-04","steckbrief":"steckbrief","scan3d":"41_12_04"}
         ]
     }

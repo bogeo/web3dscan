@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Objektinformationen>
+    <Titel>Bohrkern mit Vilbeler-Kies</Titel>
+    <Objekt-Bezeichnung>Bohrkern mit Quarzkies-Konglomerat aus dem Vilbeler-Kies</Objekt-Bezeichnung>
+    <HLNUG-Sammlungsnummer>28_09_11</HLNUG-Sammlungsnummer>
+    <Fundort>
+        <attribute>Ort</attribute>
+        <value>Hanauer Becken, 5818 Frankfurt (Ost), Bad Vilbel, Niddabrücke B 3a B 30, Achse 60, Brg.2 (27,8-28,6m)</value>
+    </Fundort>
+    <Alter-GeologischeEinheit>
+        <attribute>Tertiär</attribute>
+        <value>Oberoligozän, Vilbel-Kies-Formation</value>
+    </Alter-GeologischeEinheit>
+    <Beschreibung>
+        <attribute>Beschreibung</attribute>
+        <value>Der Bohrkern mit Grobkies-Konglomerat der Vilbel-Kies-Formation zeigt Grobkies aus Milchquarz-Kies und Geröll in einer Matrix aus Quarzsand (s. Erl. 5818 Frankfurt a.M. Ost, Kap. Brg. , Nr. 30)</value>
+    </Beschreibung>
+</Objektinformationen>

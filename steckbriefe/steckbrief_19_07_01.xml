@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Objektinformationen>
+    <Titel>Oberschenkelknochen eines Pferdes (Equus)</Titel>
+    <Objekt-Bezeichnung>Pferd (Equus) - linker Oberschenkelknochen</Objekt-Bezeichnung>
+    <HLNUG-Sammlungsnummer>19_07_01</HLNUG-Sammlungsnummer>
+    <Fundort>
+        <attribute>Ort</attribute>
+        <value>Oberrheintal bei Oppenheim</value>
+        <genauerFundort>unbekannt</genauerFundort>
+        <Fundschichten>unbekannt</Fundschichten>
+    </Fundort>
+    <Alter-GeologischeEinheit>
+        <attribute>Quartär</attribute>
+        <value>Holozän-Pleistozän</value>
+    </Alter-GeologischeEinheit>
+    <Beschreibung>
+        <attribute>Beschreibung</attribute>
+        <value>Oberschenkelknochen eines Pferdes (Equus) aus den Ausensedimenten im Oberrhein bei Oppenheim</value>
+    </Beschreibung>
+</Objektinformationen>

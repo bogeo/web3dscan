@@ -1,5 +1,4 @@
-const div = document.getElementById("steckbrief");
-console.log("div: " + div);
+
 
 function fetchProfile() {
   console.log("Steckbriefe");
@@ -11,6 +10,10 @@ function fetchProfile() {
     })
     .then(function (data) {
       console.log(data); // schnell mal in der Konsole checken
+
+      // jetzt HTML Element holen
+      const div = document.getElementById("steckbrief");
+      console.log("div: " + div);
 
       // String in ein XML-DOM-Objekt umwandeln
       let parser = new DOMParser(),
@@ -38,6 +41,10 @@ function fetchProfile(steckbriefName) {
     })
     .then(function (data) {
 //      console.log(data); // schnell mal in der Konsole checken
+
+      // jetzt HTML Element holen
+      const div = document.getElementById("steckbrief");
+      console.log("div: " + div);
 
       // String in ein XML-DOM-Objekt umwandeln
       let parser = new DOMParser(),

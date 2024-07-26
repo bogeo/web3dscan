@@ -30,7 +30,8 @@ class CrossReferencer
     static getAllByNR(probe){
       var items = this.crossRefJSON.items;
       //Filter the extracted array by the given probe(-id)
-      return items.filter(items => items['NR'] === probe);
+      //Compare first attribute value of objects in array with given probe(-id)
+      return items.filter(items => items[Object.keys(items)[0]] === probe);
     }
     
     //Get the Steckbrief-path for a given probe(-id)

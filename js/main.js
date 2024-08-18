@@ -5,7 +5,7 @@ function main() {
     initModelViewer();
     // fetchProfile();
     /**es wird ein "leerer" steckbrief geladen der darüber informiert dass ein steckbrief angezeigt wird sobald ein handstück ausgewählt wird**/
-    fetchProfileTable(0);
+    fetchProfile(0);
 }
 
 //call the main function
